@@ -3,37 +3,60 @@
 // https://react.dev/reference/react-dom/client/createRoot
 
 import React from "react";
-import ReactDOM from "react-dom"
-import {createRoot} from 'react-dom/client'
+// import ReactDOM from "react-dom"
+// import {createRoot} from 'react-dom/client'
 
 export default function Gameboard() {
   const gameBoard = () => {
-    const domNode = document.getElementById('root');
-
-    // including the start squares, the board is 24 across by 25 vertically
+    let output = "<>";
     for (let horiz = 0; horiz < 24; horiz++) {
       for (let vert = 0; vert < 25; vert++) {
-        // let square = document.createElement("div");
-        const square = createRoot("div", {
-          style: { height: "1.5em", width: "1.5em" },
-          id: `game-tile-${vert}_${horiz}`,
-          className: "gameSquares",
-        });
-        // const gameBoard = React.createElement("div", null, square)
-        createRoot(square, square)
-        // square.style.height = "1.5em";
-        // square.style.width = "1.5em";
-        // square.id = `game-tile-${vert}_${horiz}`;
-        // square.className = "gameSquares";
-        
-        // document.getElementById("gameboard-container").append(square);
+        const square = `<div
+          style = "height: 1.5em", "width: 1.5em",
+          id = "game-tile-${vert}_${horiz}",
+          className = "gameSquares">${vert}_${horiz}</div>`
+          output += square;
       }
     }
-    return gameBoard
+    output += "</>"
+    return output
   };
   return (
-  <div id="root">
-  <div>{gameBoard()}</div>;
-  </div>
+    <>
+  {/* // <div id="gameboard"> */}
+    {gameBoard()}
+    
+  {/* {Gameboard} */}
+  {/* // </div> */}
+  </>
   )
 }
+
+
+// 
+// header.js
+// import React from 'react';
+// import Heading from './heading';
+
+// const Header = React.createClass({
+//   render() {
+//     return (
+//       <header className="header">
+//         <Heading></Heading>
+//       </header>
+//     );
+//   }
+// });
+
+// export default Header;
+
+// // heading.js
+// import React from 'react';
+
+// const Heading = React.createClass({
+//   render() {
+//     return <h1 className="heading">Hello, world!</h1>;
+//   }
+// });
+
+// export default Heading;
