@@ -1,7 +1,7 @@
 const Cards = require("./cards.json");
 let organized = [];
 let shuffled = [];
-let dealt = [];
+let dealt = {};
 let Case = {"suspect": undefined, "weapon": undefined, "room": undefined}
 
 //TODO: input of # of players, output of which player has which card
@@ -25,7 +25,7 @@ function selectCase() {
     organized.splice(weapCardNum, 1)
 
     //* Select a random room
-    let roomCardNum = Math.floor(Math.random()*6) + 10
+    let roomCardNum = Math.floor(Math.random()*9) + 10
     // console.log(organized[roomCardNum]);
     //* File room into the case
     Case.room = organized[roomCardNum];
@@ -63,28 +63,38 @@ function shuffleCards() {
     console.log("Organized:", organized); */
 }
 function dealCards(playerNames, cards) {
-    console.log("Cards", cards);
-    let playerQuantity = playerNames.length;
-    let cardsPer = Math.floor(cards.length/playerQuantity);
-    let handOfCards = []
-    for (let a = 0; a <= playerQuantity - 1; a++) {
-        handOfCards = []
-        for (let b = 0; b <= cards.length; b++) {
-            console.log("b", b, cards[b]);
-            if (cards[b] != undefined) {
-                handOfCards.push(cards[b]);
-                b+=1
-            } else {break}
-        }
-        dealt.push(handOfCards)
+    for (let i = 0; i < playerNames.length; i ++) {
+        dealt[playerNames[i]] = []
     }
 
-    return dealt
+    console.log('dealt:',dealt)
+
+    // for (let i = 0; i < cards.length; i+= playerNames.length) {
+
+    // }
+    // // console.log("Cards", cards);
+    // let playerQuantity = playerNames.length;
+    // let cardsPer = Math.floor(cards.length/playerQuantity);
+    // let handOfCards = []
+    // for (let a = 0; a <= playerQuantity - 1; a++) {
+    //     handOfCards = []
+    //     for (let b = 0; b <= cards.length; b++) {
+
+    //         console.log("b", b, cards[b]);
+    //         if (cards[b] != undefined) {
+    //             handOfCards.push(cards[b]);
+    //             b+=1
+    //         } else {break}
+    //     }
+    //     dealt.push(handOfCards)
+    // }
+
+    // return dealt
 }
 
 
 organizeCards();
 selectCase();
 shuffleCards(organized);
-console.log(Case);
+// console.log(Case);
 console.log(dealCards(["Sam", "Katie", "Fred", "Jessica"], shuffled));
