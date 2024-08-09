@@ -63,38 +63,28 @@ function shuffleCards() {
     console.log("Organized:", organized); */
 }
 function dealCards(playerNames, cards) {
+    // console.log("Cards", cards);
     for (let i = 0; i < playerNames.length; i ++) {
+        //* Create an array within the "dealt" object for each player's cards by name.
         dealt[playerNames[i]] = []
+            //* Deal each player's cards, one at a time, nonsequentially
+            for (let c = 0+i; c <= cards.length; c+=playerNames.length) {
+                // console.log("c", c, cards[c]);
+                if (cards[c] != undefined) {
+                    dealt[playerNames[i]].push(cards[c]);
+                    continue;
+                } else {
+                    // console.log("breaking for loop");
+                    break;
+                }
+            }
     }
-
     console.log('dealt:',dealt)
-
-    // for (let i = 0; i < cards.length; i+= playerNames.length) {
-
-    // }
-    // // console.log("Cards", cards);
-    // let playerQuantity = playerNames.length;
-    // let cardsPer = Math.floor(cards.length/playerQuantity);
-    // let handOfCards = []
-    // for (let a = 0; a <= playerQuantity - 1; a++) {
-    //     handOfCards = []
-    //     for (let b = 0; b <= cards.length; b++) {
-
-    //         console.log("b", b, cards[b]);
-    //         if (cards[b] != undefined) {
-    //             handOfCards.push(cards[b]);
-    //             b+=1
-    //         } else {break}
-    //     }
-    //     dealt.push(handOfCards)
-    // }
-
-    // return dealt
 }
 
 
 organizeCards();
 selectCase();
 shuffleCards(organized);
-// console.log(Case);
-console.log(dealCards(["Sam", "Katie", "Fred", "Jessica"], shuffled));
+console.log(Case);
+dealCards(["Sally", "Joe"], shuffled);
