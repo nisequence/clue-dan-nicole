@@ -45,6 +45,7 @@ function organizeCards() {
     //console.log(organized);
 }
 function shuffleCards() {
+    shuffled = []
     for (let z = 0; z <= 20; z++) {
         //*Select a random card from the organized list of cards
         let addedCardNum = Math.floor(Math.random()*(organized.length))
