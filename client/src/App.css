@@ -1,15 +1,27 @@
 #gameboardContainer {
   /* background-color: blue; */
   display: grid;
-  grid-template-columns: repeat(24, 1fr);
-  grid-template-rows: repeat(25, 1fr);
+  grid-template-columns: repeat(25, 1fr);
+  grid-template-rows: repeat(26, 1fr);
   /* gap: .15em; */
   width: 860px;
 }
 
-.square {
+.squaretrue, .squarefalse, .squareblank {
   width: 2em;
   height: 2em;
   border: .15em, solid, black;
-  background-color: red;
+  /* background-color: red; */
+}
+
+.squarefalse {
+  background-color: green;
+}
+
+.squaretrue {
+  background-color: yellow;
+}
+
+.squareblank {
+  background-color: white;
 }

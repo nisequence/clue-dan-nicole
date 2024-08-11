@@ -9,9 +9,10 @@ export default function Gameboard_Container() {
     for (let vert = 0; vert < 25; vert++) {
       display.push([
         <GameSquare
+          rowCol = {`${horiz.toString()}_${vert.toString()}`}
+          key={squarekey}
           horiz={horiz}
           vert={vert}
-          squarekey={squarekey}
         ></GameSquare>,
       ]);
       squarekey++;
