@@ -1,8 +1,8 @@
 * {
-  background-color: gray;
+  /* background-color: gray; */
 }
 
-#gameboardContainer {
+#gameplayGrid {
   /* background-color: blue; */
   display: grid;
   grid-template-columns: repeat(25, 1fr);
@@ -33,4 +33,17 @@
 .squareBrown {
   background-color: rgb(165, 87, 42);
   visibility: hidden;
+}
+
+#gridContainer {
+  display: inline-block;
+  background-color: purple;
+  width: 80em;
+}
+
+#scoresheet {
+  display: inline-block;
+  width: 20em;
+  height: 100vh;
+  background-color: red;
 }

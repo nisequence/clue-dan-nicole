@@ -1,7 +1,7 @@
 import React from "react";
-import GameSquare from "./gameboard/GameSquare";
+import GameSquare from "./GameSquare";
 
-export default function Gameboard_Container() {
+export default function GameplayGrid() {
 
   const rooms = {
     conservatory: [
@@ -340,5 +340,10 @@ export default function Gameboard_Container() {
     }
   }
 
-  return <div id="gameboardContainer">{display}</div>;
+  return (
+    <div id="gridContainer">
+    <div id="gameplayGrid">{display}</div>
+    </div>
+  )
+  
 }
