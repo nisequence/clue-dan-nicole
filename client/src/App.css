@@ -1,3 +1,7 @@
+* {
+  background-color: gray;
+}
+
 #gameboardContainer {
   /* background-color: blue; */
   display: grid;
@@ -7,7 +11,7 @@
   width: 860px;
 }
 
-.squaretrue, .squarefalse, .squareblank {
+.squaretrue, .squarefalse, .squareblank, .squareInvisible {
   width: 2em;
   height: 2em;
   border: .15em, solid, black;
@@ -24,4 +28,9 @@
 
 .squareblank {
   background-color: white;
+}
+
+.squareBrown {
+  background-color: rgb(165, 87, 42);
+  visibility: hidden;
 }

@@ -6,7 +6,6 @@ export default function Gameboard_Container() {
   const rooms = {
     conservatory: [
       "22_0",
-      "22_0",
       "22_1",
       "22_2",
       "22_3",
@@ -307,11 +306,14 @@ export default function Gameboard_Container() {
   };
 
   const roomsArray = Object.keys(rooms)
+  let specialCoordinates = []
 
   for (let i = 0; i < roomsArray.length; i++) {
    let roomContent = rooms[roomsArray[i]]
    console.log("room:",roomsArray[i])
+
    console.log("roomContent:",roomContent)
+   specialCoordinates.push(roomContent)
     for (let i = 0; i < roomContent.length; i++) {
       // console.log("room squares:",roomContent[i])
     }
@@ -331,6 +333,7 @@ export default function Gameboard_Container() {
           horiz={horiz}
           vert={vert}
           roomsArray={roomsArray}
+          specialCoordinates = {specialCoordinates}
         ></GameSquare>,
       ]);
       squarekey++;
