@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Scoresheet() {
+  const [boxState, setBoxState] = useState("unchecked");
   const scoresheetItems = {
     suspects: [
       "Colonel Mustard",
@@ -58,16 +59,47 @@ export default function Scoresheet() {
     console.log("click");
   }
 
-  function addSuspects(arrayLength, className, listKey) {
-    let output = [];
-
-    for (let i = 0; i < arrayLength; i++) {
-      output.push(
+  const displayBox = (listKey, i, className) => {
+    if (boxState === "unchecked") {
+      return (
+        <div
+          key={listKey + i + className}
+          className="scoresheetCell"
+          onClick={setBoxState("checked")}
+        ></div>
+      );
+    } else if (boxState === "checked") {
+      return (
+        <div
+          key={listKey + i + className}
+          className="scoresheetCell"
+          onClick={setBoxState("unchecked")}
+        ></div>
+      );
+    } else {
+      return (
         <div
           key={listKey + i + className}
           className="scoresheetCell"
           onClick={handleScoresheetClick}
         ></div>
+      );
+    }
+  };
+
+  function addBoxes(arrayLength, className, listKey) {
+    let output = [];
+
+    for (let i = 0; i < arrayLength; i++) {
+      output.push(
+        () => {
+          displayBox(listKey, i, className);
+        }
+        // <div
+        //   key={listKey + i + className}
+        //   className="scoresheetCell"
+        //   onClick={handleScoresheetClick}
+        // ></div>
       );
       listKey++;
     }
@@ -75,35 +107,33 @@ export default function Scoresheet() {
     return output;
   }
 
-  
   scoresheetContents.push(
     <div id="suspects" key={"susGroup"}>
       {suspectsArray}
     </div>,
-    <div key={"suscol1"}>{addSuspects(6, "suspects", 0)}</div>,
-    <div key={"suscol2"}>{addSuspects(6, "suspects", 6)}</div>,
-    <div key={"suscol3"}>{addSuspects(6, "suspects", 12)}</div>,
-    <div key={"suscol4"}>{addSuspects(6, "suspects", 18)}</div>,
+    <div key={"suscol1"}>{addBoxes(6, "suspects", 0)}</div>,
+    <div key={"suscol2"}>{addBoxes(6, "suspects", 6)}</div>,
+    <div key={"suscol3"}>{addBoxes(6, "suspects", 12)}</div>,
+    <div key={"suscol4"}>{addBoxes(6, "suspects", 18)}</div>,
 
     <div id="weapons" key={"weapGroup"}>
       {weaponsArray}
     </div>,
 
-    <div key={"wcol1"}>{addSuspects(6, "weapons", 0)}</div>,
-    <div key={"wcol2"}>{addSuspects(6, "weapons", 6)}</div>,
-    <div key={"wcol3"}>{addSuspects(6, "weapons", 12)}</div>,
-    <div key={"wcol4"}>{addSuspects(6, "weapons", 18)}</div>,
+    <div key={"wcol1"}>{addBoxes(6, "weapons", 0)}</div>,
+    <div key={"wcol2"}>{addBoxes(6, "weapons", 6)}</div>,
+    <div key={"wcol3"}>{addBoxes(6, "weapons", 12)}</div>,
+    <div key={"wcol4"}>{addBoxes(6, "weapons", 18)}</div>,
 
     <div id="rooms" key={"roomsGroup"}>
       {roomsArray}
     </div>,
-    <div key={"rcol1"}>{addSuspects(9, "rooms", 0)}</div>,
-    <div key={"rcol2"}>{addSuspects(9, "rooms", 9)}</div>,
-    <div key={"rcol3"}>{addSuspects(9, "rooms", 18)}</div>,
-    <div key={"rcol4"}>{addSuspects(9, "rooms", 27)}</div>
+    <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
+    <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
+    <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
+    <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>
   );
 
-  console.log("scoresheetContents:", scoresheetContents);
   return (
     <div id="scoresheetContainer">
       <div key={"scoresheet1"}>Scoresheet</div>
