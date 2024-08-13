@@ -5,8 +5,6 @@ import {
   CarouselControl,
   CarouselCaption,
   CarouselIndicators,
-  Card,
-  CardBody,
   CardText,
   CardTitle,
   Row,
@@ -41,85 +39,64 @@ function HeldCards() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
-  //* Carousel functionality to move forward through cards
   const next = () => {
     if (animating) return;
     const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
   };
 
-  //* Carousel functionality to move backward through cards
   const previous = () => {
     if (animating) return;
     const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
   };
 
-  //* Carousel functionality for controls at the bottom of the card
   const goToIndex = (newIndex) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
 
-  //* Carousel/card display function
   const slides = items.map((item) => {
     return (
       <CarouselItem
-        className="custom-tag"
-        tag="div"
-        key={item.key}
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
+        key={item.src}
+        style={{
+          height: "60vh",
+          width: "50vw",
+          backgroundColor: "rgba(255, 255, 255, 0.723)",
+          padding: "1rem",
+        }}
       >
-        <Card
-          body
-          className="my-2"
-          style={{
-            height: "60vh",
-            width: "50vw",
-            backgroundColor: "rgba(255, 255, 255, 0.723)",
-            padding: "1rem",
-          }} // adjusted card sizing to expand to the carousel borders
-        >
-          <img alt="Sample" src={item.src} />
-          <CardBody>
-            <CardTitle tag="h3">{item.altText}</CardTitle>
-            <CardText tag="h6">{item.caption}</CardText>
-          </CardBody>
-          <br></br>
-        </Card>
+        <img src={item.src} alt={item.altText} />
+        <CarouselCaption
+          captionText={item.caption}
+          captionHeader={item.caption}
+        />
       </CarouselItem>
     );
   });
 
   return (
-    <>
-      <style>
-        {`.custom-tag {
-            max-width: 100%;
-            max-height: 90%;
-      }`}
-        {/* maximum sizing for the carousel component */}
-      </style>
-      <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-        <CarouselIndicators
-          items={items}
-          activeIndex={activeIndex}
-          onClickHandler={goToIndex}
-        />
-        {slides}
-        <CarouselControl
-          direction="prev"
-          directionText="Previous"
-          onClickHandler={previous}
-        />
-        <CarouselControl
-          direction="next"
-          directionText="Next"
-          onClickHandler={next}
-        />
-      </Carousel>
-    </>
+    <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+      <CarouselIndicators
+        items={items}
+        activeIndex={activeIndex}
+        onClickHandler={goToIndex}
+      />
+      {slides}
+      <CarouselControl
+        direction="prev"
+        directionText="Previous"
+        onClickHandler={previous}
+      />
+      <CarouselControl
+        direction="next"
+        directionText="Next"
+        onClickHandler={next}
+      />
+    </Carousel>
   );
 }
 
