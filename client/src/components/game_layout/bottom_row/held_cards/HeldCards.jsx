@@ -73,15 +73,20 @@ function HeldCards() {
       >
         <Card
           body
-          className="my-2"
           style={{
-            height: "60vh",
-            width: "50vw",
-            backgroundColor: "rgba(255, 255, 255, 0.723)",
-            padding: "1rem",
-          }} // adjusted card sizing to expand to the carousel borders
+            width: "18rem",
+            height: "22rem",
+            display: "flex",
+            alignItems: "center",
+
+            backgroundColor: "yellow",
+          }}
         >
-          <img alt="Sample" src={item.src} />
+          <img
+            alt={item.altText}
+            src={item.src}
+            style={{ maxHeight: "12rem", maxWidth: "16rem" }}
+          />
           <CardBody>
             <CardTitle tag="h3">{item.altText}</CardTitle>
             <CardText tag="h6">{item.caption}</CardText>
@@ -101,7 +106,20 @@ function HeldCards() {
       }`}
         {/* maximum sizing for the carousel component */}
       </style>
-      <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+      <Carousel
+        style={{
+          height: "60vh",
+          width: "50vw",
+          backgroundColor: "red",
+          padding: "1rem",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+        activeIndex={activeIndex}
+        next={next}
+        previous={previous}
+      >
         <CarouselIndicators
           items={items}
           activeIndex={activeIndex}
