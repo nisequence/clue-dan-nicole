@@ -77,9 +77,10 @@
   height: 1em;
   overflow-y: hidden;
   /* width: 1em; */
-  min-width: fit-content;
+  min-width: 7em;
+  height: 1.5em;
 }
 
 .suspects, .weapons, .rooms {
-  height: 1em;
+  height: 1.5em;
 }
