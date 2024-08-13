@@ -310,9 +310,9 @@ export default function GameplayGrid() {
 
   for (let i = 0; i < roomsArray.length; i++) {
    let roomContent = rooms[roomsArray[i]]
-   console.log("room:",roomsArray[i])
+  //  console.log("room:",roomsArray[i])
 
-   console.log("roomContent:",roomContent)
+  //  console.log("roomContent:",roomContent)
    specialCoordinates.push(roomContent)
     for (let i = 0; i < roomContent.length; i++) {
       // console.log("room squares:",roomContent[i])

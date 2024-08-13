@@ -1,21 +1,19 @@
-* {
-  /* background-color: gray; */
-}
+/* * {
+  background-color: gray;
+  margin: 0;
+} */
 
 #gameplayGrid {
-  /* background-color: blue; */
   display: grid;
   grid-template-columns: repeat(25, 1fr);
   grid-template-rows: repeat(26, 1fr);
-  /* gap: .15em; */
-  width: 860px;
+  /* width: 860px; */
 }
 
 .squaretrue, .squarefalse, .squareblank, .squareInvisible {
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
   border: .15em, solid, black;
-  /* background-color: red; */
 }
 
 .squarefalse {
@@ -38,12 +36,50 @@
 #gridContainer {
   display: inline-block;
   background-color: purple;
-  width: 80em;
+}
+
+#scoresheetContainer, #gridContainer, #bottomRow, #scoresheet {
+  border: 5px, solid, gray;
+  border-radius: .5em;
+  padding: .25em;
+}
+
+#scoresheetContainer {
+  display: inline-block;
+  /* visibility: hidden; */
+  width: 100%;
+  /* background-color: red; */
+}
+
+#bottomRow{
+  height: 10em;
+  background-color: blue;
+}
+
+#gameLayout {
+  display: flex;
+  flex-direction: row;
 }
 
 #scoresheet {
-  display: inline-block;
-  width: 20em;
-  height: 100vh;
-  background-color: red;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+#weapons, #suspects, #rooms {
+  display: flex;
+  flex-direction: column;
+}
+
+#weapons > div, #suspects > div, #rooms > div, .suspects, .weapons, .rooms, .scoresheetCell{
+  border: 2px solid black;
+  height: 1em;
+  overflow-y: hidden;
+  /* width: 1em; */
+  min-width: fit-content;
+}
+
+.suspects, .weapons, .rooms {
+  height: 1em;
 }
