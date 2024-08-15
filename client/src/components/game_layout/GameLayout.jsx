@@ -8,10 +8,10 @@ export default function GameLayout() {
   return (
     <>
       <div id="gameLayout">
-        <GameplayGrid />
+        {/* <GameplayGrid /> */}
         <Scoresheet />
       </div>
-      <BottomRow />
+      {/* <BottomRow /> */}
     </>
   );
 }
