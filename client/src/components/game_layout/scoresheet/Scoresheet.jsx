@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Scoresheet() {
-  const [cellStatus, setCellStatus] = useState("unclicked")
+  const [cellStatus, setCellStatus] = useState("unclicked");
   const suspectsArray = [];
   const weaponsArray = [];
   const roomsArray = [];
-  let divOutput
+  let divOutput = useRef();
+
   const scoresheetItems = {
     suspects: [
       "Colonel Mustard",
@@ -64,7 +65,8 @@ export default function Scoresheet() {
     <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
     <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
     <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
-    <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>];
+    <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>,
+  ];
   let scoresheetKey = 0;
 
   function getSuspectsWeaponsAndRooms(catIndex, arrayName) {
@@ -80,34 +82,39 @@ export default function Scoresheet() {
     getSuspectsWeaponsAndRooms(0, suspectsArray);
     getSuspectsWeaponsAndRooms(1, weaponsArray);
     getSuspectsWeaponsAndRooms(2, roomsArray);
-  }, [])
+  }, [suspectsArray, weaponsArray, roomsArray]);
 
   useEffect(() => {
     if (cellStatus === "unclicked") {
-      console.log("cellStatus:",cellStatus)
+      console.log("cellStatus:", cellStatus);
       // setCellStatus("clicked")
-
-      divOutput =         <div
-      // key={listKey + i + className}
-      className="scoresheetCell"
-      onClick={ () => {{console.log("here1")}}}
-    ></div>
+      divOutput.current = (
+        <div
+          // key={listKey + i + className}
+          className="scoresheetCell"
+          onClick={() => {
+            // {
+              console.log("here1");
+            // }
+          }}
+        ></div>
+      );
     }
     if (cellStatus === "clicked") {
-      console.log("cellStatus:",cellStatus)
+      console.log("cellStatus:", cellStatus);
       // setCellStatus("clicked")
 
-      divOutput =         <div
-      // key={listKey + i + className}
-      className="scoresheetCell"
-      onClick={() => {
-        console.log("here2")
-      }}
-    ></div>
+      divOutput.current = (
+        <div
+          // key={listKey + i + className}
+          className="scoresheetCell"
+          onClick={() => {
+            console.log("here2");
+          }}
+        ></div>
+      );
     }
-  }, [cellStatus])
-
-
+  }, [cellStatus]);
 
   function addBoxes(arrayLength, className, listKey) {
     let output = [];
@@ -115,19 +122,19 @@ export default function Scoresheet() {
     for (let i = 0; i < arrayLength; i++) {
       output.push(
         <div
-        key={listKey+i+className}
-        className="scoresheetCell"
-        onClick={() => {
-          if (cellStatus === "clicked") {
-          setCellStatus("unclicked")
-          // console.log(cellStatus)
-          } else if (cellStatus === "unclicked") {
-          setCellStatus("clicked")
-          }
-          // console.log(cellStatus)
-        }}
+          key={listKey + i + className}
+          className="scoresheetCell"
+          onClick={() => {
+            if (cellStatus === "clicked") {
+              setCellStatus("unclicked");
+              // console.log(cellStatus)
+            } else if (cellStatus === "unclicked") {
+              setCellStatus("clicked");
+            }
+            // console.log(cellStatus)
+          }}
         >
-        {divOutput}
+          {divOutput.current}
         </div>
         // <div
         //   key={listKey + i + className}
@@ -141,35 +148,35 @@ export default function Scoresheet() {
     return output;
   }
 
-useEffect(() => {
-  scoresheetContents.push(
-    <div id="suspects" key={"susGroup"}>
-      {suspectsArray}
-    </div>,
-    <div key={"suscol1"}>{addBoxes(6, "suspects", 0)}</div>,
-    <div key={"suscol2"}>{addBoxes(6, "suspects", 6)}</div>,
-    <div key={"suscol3"}>{addBoxes(6, "suspects", 12)}</div>,
-    <div key={"suscol4"}>{addBoxes(6, "suspects", 18)}</div>,
+  useEffect(() => {
+    scoresheetContents.push(
+      <div id="suspects" key={"susGroup"}>
+        {suspectsArray}
+      </div>,
+      <div key={"suscol1"}>{addBoxes(6, "suspects", 0)}</div>,
+      <div key={"suscol2"}>{addBoxes(6, "suspects", 6)}</div>,
+      <div key={"suscol3"}>{addBoxes(6, "suspects", 12)}</div>,
+      <div key={"suscol4"}>{addBoxes(6, "suspects", 18)}</div>,
 
-    <div id="weapons" key={"weapGroup"}>
-      {weaponsArray}
-    </div>,
+      <div id="weapons" key={"weapGroup"}>
+        {weaponsArray}
+      </div>,
 
-    <div key={"wcol1"}>{addBoxes(6, "weapons", 0)}</div>,
-    <div key={"wcol2"}>{addBoxes(6, "weapons", 6)}</div>,
-    <div key={"wcol3"}>{addBoxes(6, "weapons", 12)}</div>,
-    <div key={"wcol4"}>{addBoxes(6, "weapons", 18)}</div>,
+      <div key={"wcol1"}>{addBoxes(6, "weapons", 0)}</div>,
+      <div key={"wcol2"}>{addBoxes(6, "weapons", 6)}</div>,
+      <div key={"wcol3"}>{addBoxes(6, "weapons", 12)}</div>,
+      <div key={"wcol4"}>{addBoxes(6, "weapons", 18)}</div>,
 
-    <div id="rooms" key={"roomsGroup"}>
-      {roomsArray}
-    </div>,
-    <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
-    <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
-    <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
-    <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>
-  );
-  console.log("scoresheetContents:", scoresheetContents);
-},[])  
+      <div id="rooms" key={"roomsGroup"}>
+        {roomsArray}
+      </div>,
+      <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
+      <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
+      <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
+      <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>
+    );
+    console.log("scoresheetContents:", scoresheetContents);
+  }, []);
 
   return (
     <div id="scoresheetContainer">
