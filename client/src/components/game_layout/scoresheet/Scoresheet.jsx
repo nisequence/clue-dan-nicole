@@ -41,8 +41,8 @@ export default function Scoresheet() {
     ],
   };
 
-  let scoresheetContents = [
-    <div id="suspects" key={"susGroup"}>
+  const [scoresheetContents, setScoresheetContents] = useState(
+[    <div id="suspects" key={"susGroup"}>
       {suspectsArray}
     </div>,
     <div key={"suscol1"}>{addBoxes(6, "suspects", 0)}</div>,
@@ -65,8 +65,64 @@ export default function Scoresheet() {
     <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
     <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
     <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
-    <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>,
-  ];
+    <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>,]
+  )
+
+  //   useEffect(() => {
+  //     setScoresheetContents(
+  //       <div id="suspects" key={"susGroup"}>
+  //         {suspectsArray}
+  //       </div>,
+  //       // <div key={"suscol1"}>{addBoxes(6, "suspects", 0)}</div>,
+  //       // <div key={"suscol2"}>{addBoxes(6, "suspects", 6)}</div>,
+  //       // <div key={"suscol3"}>{addBoxes(6, "suspects", 12)}</div>,
+  //       // <div key={"suscol4"}>{addBoxes(6, "suspects", 18)}</div>,
+  
+  //       <div id="weapons" key={"weapGroup"}>
+  //         {weaponsArray}
+  //       </div>,
+  
+  //       // <div key={"wcol1"}>{addBoxes(6, "weapons", 0)}</div>,
+  //       // <div key={"wcol2"}>{addBoxes(6, "weapons", 6)}</div>,
+  //       // <div key={"wcol3"}>{addBoxes(6, "weapons", 12)}</div>,
+  //       // <div key={"wcol4"}>{addBoxes(6, "weapons", 18)}</div>,
+  
+  //       <div id="rooms" key={"roomsGroup"}>
+  //         {roomsArray}
+  //       </div>,
+  //       // <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
+  //       // <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
+  //       // <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
+  //       // <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>
+  //     );
+  // }, [ScoreSheetCell]);
+
+  // let scoresheetContents = [
+  //   <div id="suspects" key={"susGroup"}>
+  //     {suspectsArray}
+  //   </div>,
+  //   <div key={"suscol1"}>{addBoxes(6, "suspects", 0)}</div>,
+  //   <div key={"suscol2"}>{addBoxes(6, "suspects", 6)}</div>,
+  //   <div key={"suscol3"}>{addBoxes(6, "suspects", 12)}</div>,
+  //   <div key={"suscol4"}>{addBoxes(6, "suspects", 18)}</div>,
+
+  //   <div id="weapons" key={"weapGroup"}>
+  //     {weaponsArray}
+  //   </div>,
+
+  //   <div key={"wcol1"}>{addBoxes(6, "weapons", 0)}</div>,
+  //   <div key={"wcol2"}>{addBoxes(6, "weapons", 6)}</div>,
+  //   <div key={"wcol3"}>{addBoxes(6, "weapons", 12)}</div>,
+  //   <div key={"wcol4"}>{addBoxes(6, "weapons", 18)}</div>,
+
+  //   <div id="rooms" key={"roomsGroup"}>
+  //     {roomsArray}
+  //   </div>,
+  //   <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
+  //   <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
+  //   <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
+  //   <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>,
+  // ];
   let scoresheetKey = 0;
 
   function getSuspectsWeaponsAndRooms(catIndex, arrayName) {
@@ -84,7 +140,7 @@ export default function Scoresheet() {
     getSuspectsWeaponsAndRooms(2, roomsArray);
   // }, [suspectsArray, weaponsArray, roomsArray]);
 
-  useEffect(() => {
+    useEffect(() => {
     divOutput.current = <ScoreSheetCell/>
   },[ScoreSheetCell])
 
@@ -94,45 +150,20 @@ export default function Scoresheet() {
 
     for (let i = 0; i < arrayLength; i++) {
       output.push(
+        // return (
         <ScoreSheetCell
         key={listKey + i + className}
         className = {"scoresheetCell"}
-        />);
-      listKey++;
+        />
+      // )
+    );
+    listKey++;
     }
-
+    
     return output;
   }
 
-  useEffect(() => {
-    scoresheetContents.push(
-      <div id="suspects" key={"susGroup"}>
-        {suspectsArray}
-      </div>,
-      <div key={"suscol1"}>{addBoxes(6, "suspects", 0)}</div>,
-      <div key={"suscol2"}>{addBoxes(6, "suspects", 6)}</div>,
-      <div key={"suscol3"}>{addBoxes(6, "suspects", 12)}</div>,
-      <div key={"suscol4"}>{addBoxes(6, "suspects", 18)}</div>,
 
-      <div id="weapons" key={"weapGroup"}>
-        {weaponsArray}
-      </div>,
-
-      <div key={"wcol1"}>{addBoxes(6, "weapons", 0)}</div>,
-      <div key={"wcol2"}>{addBoxes(6, "weapons", 6)}</div>,
-      <div key={"wcol3"}>{addBoxes(6, "weapons", 12)}</div>,
-      <div key={"wcol4"}>{addBoxes(6, "weapons", 18)}</div>,
-
-      <div id="rooms" key={"roomsGroup"}>
-        {roomsArray}
-      </div>,
-      <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
-      <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
-      <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
-      <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>
-    );
-    console.log("scoresheetContents:", scoresheetContents);
-  });
 
   return (
     <div id="scoresheetContainer">
