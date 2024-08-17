@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import ScoreSheetCell from "./ScoreSheetCell";
 
 export default function Scoresheet() {
-  const [cellStatus, setCellStatus] = useState("unclicked");
   const suspectsArray = [];
   const weaponsArray = [];
   const roomsArray = [];
-  let divOutput = useRef();
+  const divOutput = useRef();
 
   const scoresheetItems = {
     suspects: [
@@ -78,70 +78,26 @@ export default function Scoresheet() {
     scoresheetKey++;
   }
 
-  useEffect(() => {
+  // useEffect(() => {
     getSuspectsWeaponsAndRooms(0, suspectsArray);
     getSuspectsWeaponsAndRooms(1, weaponsArray);
     getSuspectsWeaponsAndRooms(2, roomsArray);
-  }, [suspectsArray, weaponsArray, roomsArray]);
+  // }, [suspectsArray, weaponsArray, roomsArray]);
 
   useEffect(() => {
-    if (cellStatus === "unclicked") {
-      console.log("cellStatus:", cellStatus);
-      // setCellStatus("clicked")
-      divOutput.current = (
-        <div
-          // key={listKey + i + className}
-          className="scoresheetCell"
-          onClick={() => {
-            // {
-              console.log("here1");
-            // }
-          }}
-        ></div>
-      );
-    }
-    if (cellStatus === "clicked") {
-      console.log("cellStatus:", cellStatus);
-      // setCellStatus("clicked")
-
-      divOutput.current = (
-        <div
-          // key={listKey + i + className}
-          className="scoresheetCell"
-          onClick={() => {
-            console.log("here2");
-          }}
-        ></div>
-      );
-    }
-  }, [cellStatus]);
+    divOutput.current = <ScoreSheetCell/>
+  },[ScoreSheetCell])
 
   function addBoxes(arrayLength, className, listKey) {
     let output = [];
 
+
     for (let i = 0; i < arrayLength; i++) {
       output.push(
-        <div
-          key={listKey + i + className}
-          className="scoresheetCell"
-          onClick={() => {
-            if (cellStatus === "clicked") {
-              setCellStatus("unclicked");
-              // console.log(cellStatus)
-            } else if (cellStatus === "unclicked") {
-              setCellStatus("clicked");
-            }
-            // console.log(cellStatus)
-          }}
-        >
-          {divOutput.current}
-        </div>
-        // <div
-        //   key={listKey + i + className}
-        //   className="scoresheetCell"
-        //   onClick={handleScoresheetClick}
-        // ></div>
-      );
+        <ScoreSheetCell
+        key={listKey + i + className}
+        className = {"scoresheetCell"}
+        />);
       listKey++;
     }
 
@@ -176,7 +132,7 @@ export default function Scoresheet() {
       <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>
     );
     console.log("scoresheetContents:", scoresheetContents);
-  }, []);
+  });
 
   return (
     <div id="scoresheetContainer">
