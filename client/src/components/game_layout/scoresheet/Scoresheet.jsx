@@ -95,15 +95,35 @@ export default function Scoresheet() {
     for (let i = 0; i < arrayLength; i++) {
       output.push(
         <ScoreSheetCell
+
+
           key={listKey + i + className}
           className={"scoresheetCell"}
         />
+      );
+    }
+  };
+
+  function addBoxes(arrayLength, className, listKey) {
+    let output = [];
+
+    for (let i = 0; i < arrayLength; i++) {
+      output.push(
+        () => {
+          displayBox(listKey, i, className);
+        }
+        // <div
+        //   key={listKey + i + className}
+        //   className="scoresheetCell"
+        //   onClick={handleScoresheetClick}
+        // ></div>
       );
       listKey++;
     }
 
     return output;
   }
+
 
   return (
     <div id="scoresheetContainer">
