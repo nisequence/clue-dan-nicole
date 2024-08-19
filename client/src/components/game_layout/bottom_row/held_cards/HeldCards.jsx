@@ -78,7 +78,8 @@ function HeldCards() {
             height: "22rem",
             display: "flex",
             alignItems: "center",
-
+            // justifyContent: "center",
+            // alignSelf: "center",
             backgroundColor: "yellow",
           }}
         >
@@ -114,7 +115,11 @@ function HeldCards() {
           padding: "1rem",
           display: "flex",
           flexDirection: "row",
-          alignItems: "center",
+          // flexDirection: "column",
+          // alignItems: "center",
+          justifyContent: "space-between",
+          // alignContent: "center",
+          // alignSelf: "center",
         }}
         activeIndex={activeIndex}
         next={next}
