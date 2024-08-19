@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import ScoreSheetCell from "./ScoreSheetCell";
 
 export default function Scoresheet() {
+  const suspectsArray = [];
+  const weaponsArray = [];
+  const roomsArray = [];
+  const divOutput = useRef();
+
   const scoresheetItems = {
     suspects: [
       "Colonel Mustard",
@@ -34,14 +40,37 @@ export default function Scoresheet() {
       // ,"Other"
     ],
   };
-  let scoresheetContents = [];
+
+  const [scoresheetContents, setScoresheetContents] = useState([
+    <div id="suspects" key={"susGroup"}>
+      {suspectsArray}
+    </div>,
+    <div key={"suscol1"}>{addBoxes(6, "suspects", 0)}</div>,
+    <div key={"suscol2"}>{addBoxes(6, "suspects", 6)}</div>,
+    <div key={"suscol3"}>{addBoxes(6, "suspects", 12)}</div>,
+    <div key={"suscol4"}>{addBoxes(6, "suspects", 18)}</div>,
+
+    <div id="weapons" key={"weapGroup"}>
+      {weaponsArray}
+    </div>,
+
+    <div key={"wcol1"}>{addBoxes(6, "weapons", 0)}</div>,
+    <div key={"wcol2"}>{addBoxes(6, "weapons", 6)}</div>,
+    <div key={"wcol3"}>{addBoxes(6, "weapons", 12)}</div>,
+    <div key={"wcol4"}>{addBoxes(6, "weapons", 18)}</div>,
+
+    <div id="rooms" key={"roomsGroup"}>
+      {roomsArray}
+    </div>,
+    <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
+    <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
+    <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
+    <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>,
+  ]);
+
   let scoresheetKey = 0;
 
-  const suspectsArray = [];
-  const weaponsArray = [];
-  const roomsArray = [];
-
-  function getNames(catIndex, arrayName) {
+  function getSuspectsWeaponsAndRooms(catIndex, arrayName) {
     const group = Object.keys(scoresheetItems)[catIndex];
     for (let i = 0; i < scoresheetItems[group].length; i++) {
       let itemkey = scoresheetKey + scoresheetItems[group][i];
@@ -50,24 +79,25 @@ export default function Scoresheet() {
     scoresheetKey++;
   }
 
-  getNames(0, suspectsArray);
-  getNames(1, weaponsArray);
-  getNames(2, roomsArray);
+  // useEffect(() => {
+  getSuspectsWeaponsAndRooms(0, suspectsArray);
+  getSuspectsWeaponsAndRooms(1, weaponsArray);
+  getSuspectsWeaponsAndRooms(2, roomsArray);
+  // }, [suspectsArray, weaponsArray, roomsArray]);
 
-  function handleScoresheetClick() {
-    console.log("click");
-  }
+  useEffect(() => {
+    divOutput.current = <ScoreSheetCell />;
+  }, [ScoreSheetCell]);
 
-  function addSuspects(arrayLength, className, listKey) {
+  function addBoxes(arrayLength, className, listKey) {
     let output = [];
 
     for (let i = 0; i < arrayLength; i++) {
       output.push(
-        <div
+        <ScoreSheetCell
           key={listKey + i + className}
-          className="scoresheetCell"
-          onClick={handleScoresheetClick}
-        ></div>
+          className={"scoresheetCell"}
+        />
       );
       listKey++;
     }
@@ -75,35 +105,6 @@ export default function Scoresheet() {
     return output;
   }
 
-  
-  scoresheetContents.push(
-    <div id="suspects" key={"susGroup"}>
-      {suspectsArray}
-    </div>,
-    <div key={"suscol1"}>{addSuspects(6, "suspects", 0)}</div>,
-    <div key={"suscol2"}>{addSuspects(6, "suspects", 6)}</div>,
-    <div key={"suscol3"}>{addSuspects(6, "suspects", 12)}</div>,
-    <div key={"suscol4"}>{addSuspects(6, "suspects", 18)}</div>,
-
-    <div id="weapons" key={"weapGroup"}>
-      {weaponsArray}
-    </div>,
-
-    <div key={"wcol1"}>{addSuspects(6, "weapons", 0)}</div>,
-    <div key={"wcol2"}>{addSuspects(6, "weapons", 6)}</div>,
-    <div key={"wcol3"}>{addSuspects(6, "weapons", 12)}</div>,
-    <div key={"wcol4"}>{addSuspects(6, "weapons", 18)}</div>,
-
-    <div id="rooms" key={"roomsGroup"}>
-      {roomsArray}
-    </div>,
-    <div key={"rcol1"}>{addSuspects(9, "rooms", 0)}</div>,
-    <div key={"rcol2"}>{addSuspects(9, "rooms", 9)}</div>,
-    <div key={"rcol3"}>{addSuspects(9, "rooms", 18)}</div>,
-    <div key={"rcol4"}>{addSuspects(9, "rooms", 27)}</div>
-  );
-
-  console.log("scoresheetContents:", scoresheetContents);
   return (
     <div id="scoresheetContainer">
       <div key={"scoresheet1"}>Scoresheet</div>
