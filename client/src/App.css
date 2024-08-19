@@ -74,7 +74,7 @@
 
 #weapons > div, #suspects > div, #rooms > div, .suspects, .weapons, .rooms, .scoresheetCell{
   border: 2px solid black;
-  height: 1em;
+  /* height: 1em; */
   overflow-y: hidden;
   /* width: 1em; */
   min-width: 7em;
@@ -83,4 +83,11 @@
 
 .suspects, .weapons, .rooms {
   height: 1.5em;
+}
+
+.inputCells {
+  position: relative;
+  border: 2px solid black !important;
+  height: 1.25em;
+  font-size: large;
 }
