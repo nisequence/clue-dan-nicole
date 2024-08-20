@@ -72,6 +72,13 @@
   flex-direction: column;
 }
 
+.scoresheetCell {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #weapons > div, #suspects > div, #rooms > div, .suspects, .weapons, .rooms, .scoresheetCell{
   border: 2px solid black;
   /* height: 1em; */
@@ -80,6 +87,8 @@
   min-width: 7em;
   height: 1.5em;
 }
+
+
 
 .suspects, .weapons, .rooms {
   height: 1.5em;
@@ -90,6 +99,11 @@
   border: 2px solid black !important;
   height: 1.25em;
   font-size: large;
+}
+
+.checkMark, .redX {
+  height: 1em;
+  padding-bottom: .25em;
 }
 
 .carousel {
