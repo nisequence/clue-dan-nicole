@@ -1,4 +1,6 @@
+// https://www.npmjs.com/package/react-multi-carousel
 // https://react-multi-carousel.surge.sh/?selectedKind=Carousel&selectedStory=With%20infinite%20mode&full=0&addons=1&stories=1&panelRight=0&addonPanel=kadira%2Fjsx%2Fpanel
+
 
 import React from "react";
 import { useRef } from "react";
