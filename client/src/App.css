@@ -93,5 +93,17 @@
 }
 
 .carousel {
-  background-color: red;
+  /* background-color: red; */
+  /* width: 50em; */
+}
+
+.card {
+  /* width: 20vw; */
+  /* visibility: hidden; */
+  height: 10em !important;
+}
+
+.container-with-dots {
+  /* visibility: hidden; */
+  width: 50vw;
 }

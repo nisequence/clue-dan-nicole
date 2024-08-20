@@ -49,12 +49,16 @@ export default function MultipleHeldCards() {
     },
   ];
 
+  const clickedCard = () => {
+    alert("clicked")
+  }
+  
   keyNum.current = 1;
   const output = () => {
     let output = [];
     for (let item of items) {
       const imageInfo = (
-        <img key={keyNum.current} src={item.src} alt={item.caption}></img>
+        <img onClick={clickedCard} className="card" key={keyNum.current} src={item.src} alt={item.caption}></img>
       );
       output.push(imageInfo);
       keyNum.current++;
@@ -68,7 +72,7 @@ export default function MultipleHeldCards() {
         arrows
         autoPlaySpeed={3000}
         centerMode={false}
-        className=""
+        className="carousel"
         containerClass="container-with-dots"
         dotListClass=""
         draggable
