@@ -91,3 +91,7 @@
   height: 1.25em;
   font-size: large;
 }
+
+.carousel {
+  background-color: red;
+}

@@ -1,10 +1,10 @@
 import React from "react";
-import HeldCards from "./held_cards/HeldCards";
+import MultipleHeldCards from "./multiple_held_cards/MultipleHeldCards";
 
 export default function BottomRow() {
   return (
     <>
-      <div
+      {/* <div
         id="bottomRow"
         style={{
           display: "flex",
@@ -16,9 +16,9 @@ export default function BottomRow() {
           backgroundColor: "blue",
         }}
       >
-        BottomRow
-        <HeldCards />
-      </div>
+        BottomRow */}
+        <MultipleHeldCards/>
+      {/* </div> */}
     </>
   );
 }
