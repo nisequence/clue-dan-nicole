@@ -36,6 +36,12 @@
 #gridContainer {
   display: inline-block;
   background-color: purple;
+  height: 82vh;
+  /* width: 80vw; */
+}
+
+#gameplayGrid {
+  width: 40em;
 }
 
 #scoresheetContainer, #gridContainer, #bottomRow, #scoresheet {
@@ -46,6 +52,7 @@
 
 #scoresheetContainer {
   display: inline-block;
+  height: 82vh;
   /* visibility: hidden; */
   width: 100%;
   /* background-color: red; */
