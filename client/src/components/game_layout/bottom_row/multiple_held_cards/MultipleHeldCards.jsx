@@ -51,7 +51,6 @@ export default function MultipleHeldCards(props) {
 
   const clickedCard = (cardImage) => {
     props.setRevealedCard(cardImage)
-    alert("clicked")
     // props.setRevealedCard("../../../media/dark-red-x-line-icon.webp")
   }
   
