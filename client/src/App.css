@@ -63,8 +63,12 @@
 
 #scoresheet {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  /* grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr); */
+}
+
+.checkboxContainer > div:nth-child(even) {
+  background-color: rgb(198, 198, 198);
 }
 
 #weapons, #suspects, #rooms {
@@ -72,14 +76,14 @@
   flex-direction: column;
 }
 
-.scoresheetCell {
+.scoresheetCell, .scoresheetPlayerNames {
   user-select: none;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#weapons > div, #suspects > div, #rooms > div, .suspects, .weapons, .rooms, .scoresheetCell{
+#weapons > div, #suspects > div, #rooms > div, .suspects, .weapons, .rooms, .scoresheetCell, .scoresheetPlayerNames{
   border: 2px solid black;
   /* height: 1em; */
   overflow-y: hidden;
