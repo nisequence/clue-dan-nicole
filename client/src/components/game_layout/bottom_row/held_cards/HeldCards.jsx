@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import SingleCard from "./singleCard/SingleCard";
 import {
   Carousel,
   CarouselItem,
   CarouselControl,
   CarouselCaption,
   CarouselIndicators,
-  Card,
   CardBody,
   CardText,
   CardTitle,
@@ -63,6 +63,14 @@ function HeldCards() {
 
   //* Carousel/card display function
   const slides = items.map((item) => {
+    let nextCardIndex = items.indexOf(item) + 1;
+    if (nextCardIndex > items.length - 1) {
+      nextCardIndex = 0;
+    }
+    let lastCardIndex = nextCardIndex + 1;
+    if (lastCardIndex > items.length - 1) {
+      lastCardIndex = 0;
+    }
     return (
       <CarouselItem
         className="custom-tag"
@@ -71,29 +79,17 @@ function HeldCards() {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
-        <Card
-          body
+        <div
           style={{
-            width: "18rem",
-            height: "22rem",
             display: "flex",
-            alignItems: "center",
-            // justifyContent: "center",
-            // alignSelf: "center",
-            backgroundColor: "yellow",
+            flexDirection: "row",
+            justifyContent: "center",
           }}
         >
-          <img
-            alt={item.altText}
-            src={item.src}
-            style={{ maxHeight: "12rem", maxWidth: "16rem" }}
-          />
-          <CardBody>
-            <CardTitle tag="h3">{item.altText}</CardTitle>
-            <CardText tag="h6">{item.caption}</CardText>
-          </CardBody>
-          <br></br>
-        </Card>
+          <SingleCard item={item} />
+          <SingleCard item={items[nextCardIndex]} />
+          <SingleCard item={items[lastCardIndex]} />
+        </div>
       </CarouselItem>
     );
   });
@@ -110,7 +106,7 @@ function HeldCards() {
       <Carousel
         style={{
           height: "60vh",
-          width: "50vw",
+          width: "50%",
           backgroundColor: "red",
           padding: "1rem",
           display: "flex",
@@ -121,6 +117,7 @@ function HeldCards() {
           // alignContent: "center",
           // alignSelf: "center",
         }}
+        interval="10000"
         activeIndex={activeIndex}
         next={next}
         previous={previous}
@@ -131,7 +128,7 @@ function HeldCards() {
           onClickHandler={goToIndex}
         />
         {slides}
-        <CarouselControl
+        {/* <CarouselControl
           direction="prev"
           directionText="Previous"
           onClickHandler={previous}
@@ -140,7 +137,7 @@ function HeldCards() {
           direction="next"
           directionText="Next"
           onClickHandler={next}
-        />
+        /> */}
       </Carousel>
     </>
   );
