@@ -1,7 +1,10 @@
-import React from "react";
-import HeldCards from "./held_cards/HeldCards";
+import React, { useState } from "react";
+import MultipleHeldCards from "./multiple_held_cards/MultipleHeldCards";
+import RevealedCard from "./revealed_card/RevealedCard";
 
 export default function BottomRow() {
+  const [revealedCard, setRevealedCard] = useState(<div>Empty</div>)
+
   return (
     <>
       <div
@@ -16,8 +19,12 @@ export default function BottomRow() {
           backgroundColor: "blue",
         }}
       >
-        BottomRow
-        <HeldCards />
+        <MultipleHeldCards
+        setRevealedCard = {setRevealedCard}
+        />
+        <RevealedCard
+          revealedCard = {revealedCard}
+        />
       </div>
     </>
   );

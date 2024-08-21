@@ -63,8 +63,12 @@
 
 #scoresheet {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  /* grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr); */
+}
+
+.checkboxContainer > div:nth-child(even) {
+  background-color: rgb(198, 198, 198);
 }
 
 #weapons, #suspects, #rooms {
@@ -72,7 +76,14 @@
   flex-direction: column;
 }
 
-#weapons > div, #suspects > div, #rooms > div, .suspects, .weapons, .rooms, .scoresheetCell{
+.scoresheetCell, .scoresheetPlayerNames {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#weapons > div, #suspects > div, #rooms > div, .suspects, .weapons, .rooms, .scoresheetCell, .scoresheetPlayerNames{
   border: 2px solid black;
   /* height: 1em; */
   overflow-y: hidden;
@@ -80,6 +91,8 @@
   min-width: 7em;
   height: 1.5em;
 }
+
+
 
 .suspects, .weapons, .rooms {
   height: 1.5em;
@@ -91,3 +104,32 @@
   height: 1.25em;
   font-size: large;
 }
+
+.checkMark, .redX {
+  height: 1em;
+  padding-bottom: .25em;
+}
+
+/* Held Cards Container */
+
+.carousel {
+  /* background-color: red; */
+  /* width: 50em; */
+}
+
+.card, #revealedCard {
+  /* width: 20vw; */
+  /* visibility: hidden; */
+  height: 10em !important;
+}
+
+.container-with-dots {
+  /* visibility: hidden; */
+  width: 50vw;
+}
+
+#revealedCardSection {
+  display: inline-block;
+  background-color: red;
+}
+

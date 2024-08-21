@@ -2,12 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ScoreSheetCell from "./ScoreSheetCell";
 
 export default function Scoresheet() {
-  const suspectsArray = [];
-  const weaponsArray = [];
-  const roomsArray = [];
-  const divOutput = useRef();
-
-  const scoresheetItems = {
+  const scoresheetItems = useRef({
     suspects: [
       "Colonel Mustard",
       "Professor Plum",
@@ -39,58 +34,78 @@ export default function Scoresheet() {
       "Study",
       // ,"Other"
     ],
-  };
-
-  const [scoresheetContents, setScoresheetContents] = useState([
-    <div id="suspects" key={"susGroup"}>
-      {suspectsArray}
-    </div>,
-    <div key={"suscol1"}>{addBoxes(6, "suspects", 0)}</div>,
-    <div key={"suscol2"}>{addBoxes(6, "suspects", 6)}</div>,
-    <div key={"suscol3"}>{addBoxes(6, "suspects", 12)}</div>,
-    <div key={"suscol4"}>{addBoxes(6, "suspects", 18)}</div>,
-
-    <div id="weapons" key={"weapGroup"}>
-      {weaponsArray}
-    </div>,
-
-    <div key={"wcol1"}>{addBoxes(6, "weapons", 0)}</div>,
-    <div key={"wcol2"}>{addBoxes(6, "weapons", 6)}</div>,
-    <div key={"wcol3"}>{addBoxes(6, "weapons", 12)}</div>,
-    <div key={"wcol4"}>{addBoxes(6, "weapons", 18)}</div>,
-
-    <div id="rooms" key={"roomsGroup"}>
-      {roomsArray}
-    </div>,
-    <div key={"rcol1"}>{addBoxes(9, "rooms", 0)}</div>,
-    <div key={"rcol2"}>{addBoxes(9, "rooms", 9)}</div>,
-    <div key={"rcol3"}>{addBoxes(9, "rooms", 18)}</div>,
-    <div key={"rcol4"}>{addBoxes(9, "rooms", 27)}</div>,
-  ]);
+  });
 
   let scoresheetKey = 0;
 
-  function getSuspectsWeaponsAndRooms(catIndex, arrayName) {
-    const group = Object.keys(scoresheetItems)[catIndex];
-    for (let i = 0; i < scoresheetItems[group].length; i++) {
-      let itemkey = scoresheetKey + scoresheetItems[group][i];
-      arrayName.push(<div key={itemkey}> {scoresheetItems[group][i]}</div>);
-    }
-    scoresheetKey++;
-  }
-
-  // useEffect(() => {
-  getSuspectsWeaponsAndRooms(0, suspectsArray);
-  getSuspectsWeaponsAndRooms(1, weaponsArray);
-  getSuspectsWeaponsAndRooms(2, roomsArray);
-  // }, [suspectsArray, weaponsArray, roomsArray]);
+  const players = useRef();
+  players.current = ["Alice", "Bob", "Cynthia", "Doreen"];
+  
+  const [scoresheetContents, setScoresheetContents] = useState();
 
   useEffect(() => {
-    divOutput.current = <ScoreSheetCell />;
-  }, [ScoreSheetCell]);
+    const suspectsArray = [<div key={"sus00"}></div>];
+    const weaponsArray = [];
+    const roomsArray = [];
+    function getSuspectsWeaponsAndRooms(catIndex, arrayName) {
+      const group = Object.keys(scoresheetItems.current)[catIndex];
 
-  function addBoxes(arrayLength, className, listKey) {
-    let output = [];
+      for (let i = 0; i < scoresheetItems.current[group].length; i++) {
+        let itemkey = scoresheetKey + scoresheetItems.current[group][i];
+        arrayName.push(
+          <div key={itemkey}> {scoresheetItems.current[group][i]}</div>
+        );
+      }
+      scoresheetKey++;
+    }
+
+    const addContainers = (type, noOfRows, description) => {
+      let output = [];
+      let suscolIndex = 1;
+      let index = 0;
+      let playerNameIndex = 0;
+      for (let i = 0; i < players.current.length; i++) {
+        let key = type + suscolIndex;
+        output.push(
+          <div className="checkboxContainer" key={key}>{addBoxes(noOfRows, description, index,playerNameIndex)}</div>
+        );
+        suscolIndex++;
+        index += 6;
+        playerNameIndex++
+      }
+      console.log(output);
+      return output;
+    };
+
+    setScoresheetContents([
+      <div id="suspects" key={"susGroup"}>
+        {suspectsArray}
+      </div>,
+
+      getSuspectsWeaponsAndRooms(0, suspectsArray),
+      addContainers("suscol", 6, "suspects"),
+
+      <div id="weapons" key={"weapGroup"}>
+        {weaponsArray}
+      </div>,
+      getSuspectsWeaponsAndRooms(1, weaponsArray),
+      addContainers("wcol", 6, "weapons"),
+
+      <div id="rooms" key={"roomsGroup"}>
+        {roomsArray}
+      </div>,
+      getSuspectsWeaponsAndRooms(2, roomsArray),
+      addContainers("rcol", 9, "rooms"),
+    ]);
+  }, [scoresheetKey]);
+
+
+
+  function addBoxes(arrayLength, className, listKey, playerNameIndex) {
+    let output = []
+    if (className === "suspects") {
+      output.push([<div className="scoresheetPlayerNames" key={"addbox00"}>{players.current[playerNameIndex]}</div>]);
+    }
 
     for (let i = 0; i < arrayLength; i++) {
       output.push(
@@ -108,7 +123,14 @@ export default function Scoresheet() {
   return (
     <div id="scoresheetContainer">
       <div key={"scoresheet1"}>Scoresheet</div>
-      <div key={"scoresheetContents"} id="scoresheet">
+      <div
+        key={"scoresheetContents"}
+        id="scoresheet"
+        style={{
+          gridTemplateColumns: `repeat(${players.current.length + 1}, 1fr)`,
+          gridTemplateRows: "repeat(4, 1fr)",
+        }}
+      >
         {scoresheetContents}
       </div>
     </div>
