@@ -1,38 +1,142 @@
-.App {
-  text-align: center;
+/* * {
+  background-color: gray;
+  margin: 0;
+} */
+
+#gameplayGrid {
+  display: grid;
+  grid-template-columns: repeat(25, 1fr);
+  grid-template-rows: repeat(26, 1fr);
+  /* width: 860px; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.squaretrue, .squarefalse, .squareblank, .squareInvisible {
+  width: 1.5em;
+  height: 1.5em;
+  border: .15em, solid, black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.squarefalse {
+  background-color: rgb(255, 193, 77);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.squaretrue {
+  background-color: yellow;
+}
+
+.squareblank {
+  background-color: white;
+}
+
+.squareBrown {
+  background-color: rgb(165, 87, 42);
+  visibility: hidden;
+}
+
+#gridContainer {
+  display: inline-block;
+  background-color: purple;
+  height: 82vh;
+  /* width: 80vw; */
+}
+
+#gameplayGrid {
+  width: 40em;
+}
+
+#scoresheetContainer, #gridContainer, #bottomRow, #scoresheet {
+  border: 5px, solid, gray;
+  border-radius: .5em;
+  padding: .25em;
+}
+
+#scoresheetContainer {
+  display: inline-block;
+  height: 82vh;
+  /* visibility: hidden; */
+  width: 100%;
+  /* background-color: red; */
+}
+
+#bottomRow{
+  height: 10em;
+  background-color: blue;
+}
+
+#gameLayout {
+  display: flex;
+  flex-direction: row;
+}
+
+#scoresheet {
+  display: grid;
+  /* grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr); */
+}
+
+.checkboxContainer > div:nth-child(even) {
+  background-color: rgb(198, 198, 198);
+}
+
+#weapons, #suspects, #rooms {
+  display: flex;
+  flex-direction: column;
+}
+
+.scoresheetCell, .scoresheetPlayerNames {
+  user-select: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#weapons > div, #suspects > div, #rooms > div, .suspects, .weapons, .rooms, .scoresheetCell, .scoresheetPlayerNames{
+  border: 2px solid black;
+  /* height: 1em; */
+  overflow-y: hidden;
+  /* width: 1em; */
+  min-width: 7em;
+  height: 1.5em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+.suspects, .weapons, .rooms {
+  height: 1.5em;
 }
+
+.inputCells {
+  position: relative;
+  border: 2px solid black !important;
+  height: 1.25em;
+  font-size: large;
+}
+
+.checkMark, .redX {
+  height: 1em;
+  padding-bottom: .25em;
+}
+
+/* Held Cards Container */
+
+.carousel {
+  /* background-color: red; */
+  /* width: 50em; */
+}
+
+.card, #revealedCard {
+  /* width: 20vw; */
+  /* visibility: hidden; */
+  height: 10em !important;
+}
+
+.container-with-dots {
+  /* visibility: hidden; */
+  width: 50vw;
+}
+
+#revealedCardSection {
+  display: inline-block;
+  background-color: red;
+}
+
