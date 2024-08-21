@@ -73,7 +73,7 @@ export default function Scoresheet() {
         index += 6;
         playerNameIndex++
       }
-      console.log(output);
+      // console.log(output);
       return output;
     };
 
