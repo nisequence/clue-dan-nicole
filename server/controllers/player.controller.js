@@ -3,7 +3,7 @@ const Player = require("../models/player.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT;
-const requireValidation = require("../middleware/validate-session");
+// const requireValidation = require("../middleware/validate-session");
 
 const serverError = (res, error) => {
   console.log("Server-side error");
@@ -70,7 +70,9 @@ router.post("/login", async (req, res) => {
 });
 
 //? GET Route for Own Info
-router.get("/find", requireValidation, async (req, res) => {
+// router.get("/find", requireValidation, async (req, res) => {
+  router.get("/find", async (req, res) => {
+
   try {
     const id = req.player._id;
 
@@ -90,7 +92,9 @@ router.get("/find", requireValidation, async (req, res) => {
 });
 
 //? PATCH Route to Edit Profile
-router.patch("/adjust", requireValidation, async (req, res) => {
+router.patch("/adjust", async (req, res) => {
+  // router.patch("/adjust", requireValidation, async (req, res) => {
+
   try {
     //* Save the player's id and create the filter
     const id = req.player._id;
@@ -129,7 +133,9 @@ router.patch("/adjust", requireValidation, async (req, res) => {
 });
 
 //? DELETE Route for Own Account Removals
-router.delete("/quit", requireValidation, async (req, res) => {
+router.delete("/quit", async (req, res) => {
+  // router.delete("/quit", requireValidation, async (req, res) => {
+
   try {
     //* Pull the player's info from the req
     const id = req.player._id;
