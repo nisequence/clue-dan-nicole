@@ -37,11 +37,6 @@
   display: inline-block;
   background-color: purple;
   height: 82vh;
-  /* width: 80vw; */
-}
-
-#gameplayGrid {
-  width: 40em;
 }
 
 #scoresheetContainer, #gridContainer, #bottomRow, #scoresheet {

@@ -128,7 +128,7 @@ export default function Scoresheet() {
         id="scoresheet"
         style={{
           gridTemplateColumns: `repeat(${players.current.length + 1}, 1fr)`,
-          gridTemplateRows: "repeat(4, 1fr)",
+          gridTemplateRows: "repeat(3, 1fr)",
         }}
       >
         {scoresheetContents}
