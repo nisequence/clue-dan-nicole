@@ -1,10 +1,11 @@
 import React from "react";
 
-function RevealedCard() {
+function RevealedCard(props) {
   return (
-    <>
-      <h1>RevealedCard</h1>
-    </>
+    <div id="revealedCardSection">
+      <img id="revealedCard" src={props.revealedCard} alt="revealed card" />
+      <button id="revealedCardSubmitBtn">Submit</button>
+    </div>
   );
 }
 

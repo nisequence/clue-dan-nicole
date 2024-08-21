@@ -110,12 +110,14 @@
   padding-bottom: .25em;
 }
 
+/* Held Cards Container */
+
 .carousel {
   /* background-color: red; */
   /* width: 50em; */
 }
 
-.card {
+.card, #revealedCard {
   /* width: 20vw; */
   /* visibility: hidden; */
   height: 10em !important;
@@ -125,3 +127,9 @@
   /* visibility: hidden; */
   width: 50vw;
 }
+
+#revealedCardSection {
+  display: inline-block;
+  background-color: red;
+}
+

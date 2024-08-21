@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import MultipleHeldCards from "./multiple_held_cards/MultipleHeldCards";
+import RevealedCard from "./revealed_card/RevealedCard";
 
 export default function BottomRow() {
+  const [revealedCard, setRevealedCard] = useState(<div>Empty</div>)
+
   return (
     <>
-      {/* <div
+      <div
         id="bottomRow"
         style={{
           display: "flex",
@@ -16,9 +19,13 @@ export default function BottomRow() {
           backgroundColor: "blue",
         }}
       >
-        BottomRow */}
-        <MultipleHeldCards/>
-      {/* </div> */}
+        <MultipleHeldCards
+        setRevealedCard = {setRevealedCard}
+        />
+        <RevealedCard
+          revealedCard = {revealedCard}
+        />
+      </div>
     </>
   );
 }

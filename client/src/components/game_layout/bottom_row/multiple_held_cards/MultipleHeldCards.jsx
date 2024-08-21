@@ -7,7 +7,7 @@ import { useRef } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-export default function MultipleHeldCards() {
+export default function MultipleHeldCards(props) {
   const keyNum = useRef();
   const responsive = {
     superLargeDesktop: {
@@ -49,8 +49,8 @@ export default function MultipleHeldCards() {
     },
   ];
 
-  const clickedCard = () => {
-    alert("clicked")
+  const clickedCard = (cardImage) => {
+    props.setRevealedCard(cardImage)
   }
   
   keyNum.current = 1;
@@ -58,7 +58,7 @@ export default function MultipleHeldCards() {
     let output = [];
     for (let item of items) {
       const imageInfo = (
-        <img onClick={clickedCard} className="card" key={keyNum.current} src={item.src} alt={item.caption}></img>
+        <img onClick={() => clickedCard(item.src)} className="card" key={keyNum.current} src={item.src} alt={item.caption}></img>
       );
       output.push(imageInfo);
       keyNum.current++;
