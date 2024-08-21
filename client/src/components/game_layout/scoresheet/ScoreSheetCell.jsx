@@ -3,8 +3,10 @@
 
 import React, { useRef, useState } from "react";
 import ScoresheetInputForm from "./ScoresheetInputForm";
-import checkMark from "../../../media/green-checkmark-line-icon.webp"
-import redX from "../../../media/red-x-line-icon.webp"
+// import checkMark from "../../../media/green-checkmark-line-icon.webp"
+// import redX from "../../../media/red-x-line-icon.webp"
+import checkMark from "../../../media/dark-green-checkmark-line-icon.webp"
+import redX from "../../../media/dark-red-x-line-icon.webp"
 
 export default function ScoreSheetCell(props) {
   const cellContent = useRef();
