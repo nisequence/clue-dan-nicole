@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -9,20 +9,25 @@ import Home from "./components/home/Home";
 
 function App() {
   const [playerName, setPlayerName] = useState("Sample Name");
-  const updateName = (newName) => {
-    localStorage.setItem("playerName", newName);
-    console.log(newName);
-    // ^ .setItem(key, value)
-    setPlayerName(newName);
-  };
+
+  // const updateName = (newName) => {
+  //   localStorage.playerName = newName;
+  // };
+
+  useEffect(() => {
+    localStorage.playerName = playerName;
+  }, [playerName])
 
   const [opponents, setOpponents] = useState(["Sample Enemy"]);
-  const updateOpponents = (newOpponents) => {
-    localStorage.setItem("Opponents", newOpponents);
-    console.log(newOpponents);
-    // ^ .setItem(key, value)
-    setOpponents(newOpponents);
-  };
+
+  useEffect(() => {
+    localStorage.opponents = opponents;
+  }, [opponents])
+
+  // const updateOpponents = (newOpponents) => {
+  //   localStorage.setItem("Opponents", newOpponents);
+  //   setOpponents(newOpponents);
+  // };
 
   return (
     <div className="App">
@@ -30,7 +35,7 @@ function App() {
         <Route
           path="/"
           element={
-            <Home updateName={updateName} updateOpponents={updateOpponents} />
+            <Home setPlayerName={setPlayerName} setOpponents={setOpponents} />
           }
         />
         <Route

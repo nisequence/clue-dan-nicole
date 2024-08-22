@@ -12,12 +12,9 @@ function Home(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let body = JSON.stringify({
-      newName: nameRef.current.value,
-      opponent: enemyRef.current.value,
-    });
-    props.updateName(body.newName);
-    props.updateOpponents(body.opponent);
+    props.setPlayerName(nameRef.current.value);
+    props.setOpponents(enemyRef.current.value);
+
     navigate("/play");
   };
   return (
